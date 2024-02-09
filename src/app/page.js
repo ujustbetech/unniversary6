@@ -1,10 +1,7 @@
 import Image from "next/image";
 import styles from "./page.module.css";
-import QRCode from "react-qr-code";
-import QrReader from 'react-qr-scanner'
 
 export default function Home() {
-  
   return (
     <main className={styles.main}>
       <div className={styles.description}>
@@ -39,15 +36,6 @@ export default function Home() {
           width={180}
           height={37}
           priority
-        />
-      </div>
-
-      <div style={{ height: "auto", margin: "0 auto", maxWidth: 64, width: "100%" }}>
-        <QRCode
-          size={256}
-          style={{ height: "auto", maxWidth: "100%", width: "100%" }}
-          value="test"
-          viewBox={`0 0 256 256`}
         />
       </div>
 
