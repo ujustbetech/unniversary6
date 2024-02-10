@@ -19,13 +19,13 @@ function Qrfile() {
   const handleScanWebCam = (result) => {
     
     const text3 = JSON.stringify(result)
-    console.log(result);  
+    console.log(text3[9]);  
   }
 
   return (
     <div>
 
-      qrfile
+      {/* qrfile */}
 
       <QrReader
         // delay={this.state.delay}
