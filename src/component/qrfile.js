@@ -1,4 +1,4 @@
-'use client' // Error components must be Client Components
+'use client'
 import React from 'react'
 import { useEffect, useRef, useState } from 'react';
 import { Router, useRouter } from 'next/router';

@@ -41,6 +41,18 @@ export default function Scan({ params }) {
     const handleErrorWebCam = (error) => {
         console.log(error);
     }
+    const localstorage = (localdata) => {
+        console.log("local storage", localdata);
+        const itmes = {
+            firstname: localdata.firstname,
+            lastname: localdata.lastname,
+            phonenumber: localdata.number,
+            // attendance: localdata.attendance,
+            role: localdata.role
+
+        }
+        localStorage.setItem('unniversary', JSON.stringify(localdata));
+    };
     const handleScanWebCam = async (result) => {
         // const saved = localStorage.getItem("items");
         const saved = localStorage.getItem("unniversary");
@@ -59,7 +71,7 @@ export default function Scan({ params }) {
                 // setPesent(true)
                 const user = {
                     scanQr: "yes",
-                    number: localstoragedata.phonenumber
+                    number: localstoragedata.number
                 }
                 console.log(user);
                 const response = await axios
@@ -68,6 +80,11 @@ export default function Scan({ params }) {
                 if (response && response.data) {
                     console.log(response, "scan done");
                     console.log(response.data);
+                    if(response.data.status === "Allready scan QR"){
+                        console.log("scanning done");
+                        // setPesent(true);
+                        loginClick (localstoragedata.number);
+                    }
 
                 }
 
@@ -78,6 +95,89 @@ export default function Scan({ params }) {
 
         }
     }
+
+
+    const loginClick = async (phone) => {
+
+        // console.log(showpopup);
+        // e.preventDefault();
+        console.log("phone", phone);
+        const user = {
+            number: phone,
+        }
+        console.log(user);
+        const response = await axios
+            .post('https://unniversary.ujustconnect.com/login.php', user)
+            .catch((error) => console.log('Error: ', error));
+        if (response && response.data) {
+            console.log(response);
+            console.log(response.data.status);
+            if (response.data.status === "success") {
+                // setshowpopup(true);
+                // setresponsedata(response.data);
+                localstorage(response.data);
+                // setTimeout(() => {
+                //     // alert("test");
+                //     // setshowpopup(false);
+                //     // setfirstname("")
+                //     // setlastname("")
+                //     // setmobilenumber("")
+                //     // setloginDone(true)
+                //     // setlogin(false)
+                //     // setregistration(false)
+                //     localstorage(response.data);
+
+
+                // }, 3000);
+
+            }
+            if (response.data.status === "User not exists") {
+                setloginfailedpopup(true);
+                console.log("user not there");
+                setTimeout(() => {
+                    // alert("test");
+                    // setshowpopup(false);
+                    // setfirstname("")
+                    // setlastname("")
+                    // setmobilenumber("")
+                    // setloginDone(true)
+                    // setlogin(false)
+                    // setregistration(false)
+                    // localstorage(response.data);
+                    setloginDone(true)
+                    setlogin(false)
+                    setloginfailedpopup(false);
+                    setlogin(false)
+                    setregistration(true)
+
+                }, 3000);
+
+            }
+        }
+
+
+        // console.log(showpopup);
+
+    };
+
+    useEffect(() => {
+
+        console.log("use effect");
+        const saved = localStorage.getItem("unniversary");
+        const localstoragedata = JSON.parse(saved)
+        if(saved){
+            if(localstoragedata.scanQr !== null ){
+                console.log("already scann QR");
+                setPesent(true);
+            }
+        }
+        else{
+            router.push("/")
+        }
+        
+    }, [])
+
+    
 
     return (
 
@@ -105,102 +205,67 @@ export default function Scan({ params }) {
                         <div className='programsequence'>
                             <h2>Trajectory</h2>
                             <ul>
-                                <li>
+                                {/* <li>
                                     <h6>Ganesh Vandana</h6>
                                     <p>Prarthana by Ashwin Joshi</p>
-                                </li>
+                                </li> */}
                                 <li>
                                     <h6>Welcome Note</h6>
                                     <p>Abhishek and Gaurav</p>
                                 </li>
                                 <li>
-                                    <h6>Journey</h6>
+                                    <h6>Playfulness</h6>
                                     <p>Journey Video</p>
                                 </li>
                                 <li>
-                                    <h6>Value Introduction</h6>
+                                    <h6>Warm Up Game</h6>
                                     <p>Poem by Sonali Korde </p>
                                 </li>
                                 <li>
-                                    <h6>Integrity</h6>
+                                    <h6>Games</h6>
                                     <p>Song by Rajendra Bhide</p>
                                 </li>
                                 <li>
-                                    <h6>Responsible</h6>
+                                    <h6>Games Recognition</h6>
                                     <p>Song by Rajendra Bhide</p>
                                 </li>
                                 <li>
-                                    <h6>Selfless</h6>
+                                    <h6>Break + Snacks</h6>
                                     <p>Song by Satish Thampi</p>
                                 </li>
                                 <li>
-                                    <h6>Award</h6>
+                                    <h6>UJustBe Poem by Pramodini Marne</h6>
                                     <p>Most Exploring Orbiter</p>
                                 </li>
                                 <li>
-                                    <h6>Fairness</h6>
-                                    <p>Poem by Rupali Kamat / Song by Kishore Hegde</p>
+                                    <h6>Musafir Hoon Yaaro</h6>
+                                    <p>Song by Kishore Hegde</p>
                                 </li>
                                 <li>
-                                    <h6>Inclusive</h6>
+                                    <h6>Creator's Speech</h6>
                                     <p>Song by Sudhakar Patole</p>
                                 </li>
                                 <li>
-                                    <h6>Openness</h6>
+                                    <h6>UJustBe as of today</h6>
                                     <p>Dance by Minal Govalkar</p>
                                 </li>
                                 <li>
-                                    <h6>Award </h6>
+                                    <h6>Awards + Guest Speech </h6>
                                     <p>Most Responsible Cosmonaut</p>
                                 </li>
                                 <li>
-                                    <h6>Authenticity </h6>
+                                    <h6>Nucleus Team Performance </h6>
                                     <p>Game activity by Smita Kadu</p>
                                 </li>
                                 <li>
-                                    <h6>Caring </h6>
+                                    <h6>Nucleus Team Closing Speech </h6>
                                     <p>Poem by Kanchan Utekar</p>
                                 </li>
                                 <li>
-                                    <h6>Awareness </h6>
+                                    <h6>Dinner </h6>
                                     <p>Magic Show by Deepak Pande</p>
                                 </li>
-                                <li>
-                                    <h6>Award </h6>
-                                    <p>Most Selfless Propeller</p>
-                                </li>
-                                <li>
-                                    <h6>Explore </h6>
-                                    <p>Game activity by Smita Kadu</p>
-                                </li>
-                                <li>
-                                    <h6>Communication </h6>
-                                    <p>Standup performance by Rashmi Agaskar</p>
-                                </li>
-                                <li>
-                                    <h6>Bold </h6>
-                                    <p>Supernova Walk</p>
-                                </li>
-                                <li>
-                                    <h6>Award  </h6>
-                                    <p>The ContriOrbitor</p>
-                                </li>
-                                <li>
-                                    <h6>Nucleus Team  </h6>
-                                    <p>Journey / Rewards & Recongnization</p>
-                                </li>
-                                <li>
-                                    <h6>Something + Business</h6>
-                                    <p>By Founders</p>
-                                </li>
-                                <li>
-                                    <h6>Open Space</h6>
-                                    <p>Open Space</p>
-                                </li>
-                                <li>
-                                    <h6>Dinner</h6>
-                                    <p>Dinner</p>
-                                </li>
+                                
                             </ul>
 
 

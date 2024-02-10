@@ -15,7 +15,7 @@ function Login() {
     const [showpopup, setshowpopup] = useState(false);
     const [showpopup2, setshowpopup2] = useState(false);
     const [responsedata, setresponsedata] = useState("");
-    const [registration, setregistration] = useState(false);
+    const [registration, setregistration] = useState(true);
     const [loginstate, setlogin] = useState(true);
     const [loginfailedpopup, setloginfailedpopup] = useState(false);
     const [loginDone, setloginDone] = useState(false);
@@ -42,73 +42,16 @@ function Login() {
 
     useEffect(() => {
 
-
-        const saved = localStorage.getItem("unnivesary");
+        console.log("use effect");
+        const saved = localStorage.getItem("unniversary");
         const localstoragedata = JSON.parse(saved)
 
         if (saved) {
-            // console.log("already Login", localstoragedata.firstname);
-            // axios.get(`https://plankton-app-i2dnd.ondigitalocean.app/login/${localstoragedata.phonenumber}/`).then(response => {
-            //     console.log(response);
-            //     const alldata = response.data;
-            //     setresponsedata(alldata)
-            //     if (alldata.attendance === 1) {
-            //         // setPesent(true)
-            //         router2.push("/" + localstoragedata.phonenumber)
-            //     }
-            //     // if (alldata.foodcounter === 1) {
-            //     //   setfoodcounter(true)
-            //     // }
+            console.log("already Login", localstoragedata.phonenumber);
+            
+            router2.push("/" + localstoragedata.number)
+            
 
-            // });
-
-            const response = axios
-            .post('https://unniversary.ujustconnect.com/login.php', user)
-            .catch((error) => console.log('Error: ', error));
-        if (response && response.data) {
-            console.log(response);
-            console.log(response.data.status);
-            if (response.data.status === "success"){
-                setshowpopup(true);
-                setresponsedata(response.data);
-                setTimeout(() => {
-                    // alert("test");
-                    setshowpopup(false);
-                    setfirstname("")
-                    setlastname("")
-                    setmobilenumber("")
-                    setloginDone(true)
-                    setlogin(false)
-                    setregistration(false)
-                    localstorage(response.data);
-
-
-                }, 3000);
-
-            }
-            if (response.data.status === "User not exists") {
-                setloginfailedpopup(true);
-                console.log("user not there");
-                setTimeout(() => {
-                    // alert("test");
-                    // setshowpopup(false);
-                    // setfirstname("")
-                    // setlastname("")
-                    // setmobilenumber("")
-                    // setloginDone(true)
-                    // setlogin(false)
-                    // setregistration(false)
-                    // localstorage(response.data);
-                    setloginDone(true)
-                    setlogin(false)
-                    setloginfailedpopup(false);
-                    setlogin(false)
-                    setregistration(true)
-
-                }, 3000);
-
-            }
-        }
 
 
         }
@@ -130,7 +73,7 @@ function Login() {
             role: localdata.role
 
         }
-        localStorage.setItem('unniversary', JSON.stringify(itmes));
+        localStorage.setItem('unniversary', JSON.stringify(localdata));
     };
 
 
@@ -159,21 +102,21 @@ function Login() {
             .catch((error) => console.log('Error: ', error));
         if (response && response.data) {
             console.log(response);
-            console.log(response.data);
+            console.log(response.data.result);
             if (response.data.status === "success") {
                 setshowpopup(true);
-                setresponsedata(response.data);
+                setresponsedata(response.data.result);
                 setTimeout(() => {
                     // alert("test");
                     setshowpopup(false);
                     setfirstname("")
                     setlastname("")
                     setmobilenumber("")
-                    setloginDone(true)
-                    setlogin(false)
-                    setregistration(false)
-                    // localstorage(response.data);
-
+                    // setloginDone(true)
+                    // setlogin(false)
+                    // setregistration(false)
+                    localstorage(response.data.result);
+                    router2.push("/" + response.data.result.number)
 
                 }, 3000);
 
@@ -191,6 +134,7 @@ function Login() {
                     // setlogin(false)
                     // setregistration(false)
                     setshowpopup2(false);
+
                     // localstorage(response.data);
 
 
@@ -212,13 +156,14 @@ function Login() {
         console.log(user);
         const response = await axios
             .post('https://unniversary.ujustconnect.com/login.php', user)
-            .catch((error) => console.log('Error: ', error))    ;
+            .catch((error) => console.log('Error: ', error));
         if (response && response.data) {
             console.log(response);
             console.log(response.data.status);
-            if (response.data.status === "success"){
+            if (response.data.status === "success") {
                 setshowpopup(true);
                 setresponsedata(response.data);
+                localstorage(response.data);
                 setTimeout(() => {
                     // alert("test");
                     setshowpopup(false);
@@ -229,7 +174,7 @@ function Login() {
                     setlogin(false)
                     setregistration(false)
                     localstorage(response.data);
-
+                    // router2.push("/" + localstoragedata.phonenumber)
 
                 }, 3000);
 
@@ -260,7 +205,7 @@ function Login() {
 
 
         console.log(showpopup);
-        
+
     };
     const THREE_DAYS_IN_MS = 12 * 24 * 60 * 60 * 1000;
     const NOW_IN_MS = new Date().getTime();
@@ -286,7 +231,7 @@ function Login() {
             // use the src property of the image object
             backgroundImage: `url(${backgroundImage.src})`,
             // other styles
-          }}>
+        }}>
             <div className='c-login'>
                 {loginDone ? null : <div className='logo'>
                     <div className='ujblogo'>
@@ -322,16 +267,16 @@ function Login() {
                                 <h6>Welcome to Exploration Journey {responsedata.firstname} {responsedata.lastname}</h6>
 
                             </div> : <div className='scan'>
-                            <div className='welcomemessage'>
-                                <h5>
-                                    Something Plus Business
-                                </h5>
-                                <h6>Welcome to Exploration Journey {responsedata.firstname} {responsedata.lastname}</h6>
+                                {/* <div className='welcomemessage'>
+                                    <h5>
+                                        Something Plus Business
+                                    </h5>
+                                    <h6>Welcome to Exploration Journey {responsedata.firstname} {responsedata.lastname}</h6>
+
+                                </div> */}
+                                <button onClick={scanClick}>Scan Attendance</button>
 
                             </div>
-                                <button onClick={scanClick}>Scan Attendance</button>
-                                
-                                </div>
                         }
 
                     </div> : null
@@ -339,7 +284,7 @@ function Login() {
                 {
                     registration ? <form onSubmit={handleClick}>
                         <div className='regfrom'>
-                            <input required minlength="10" type='tel' value={mobilenumber} placeholder='Mobile Number' onChange={(event) => {
+                            <input required minLength="10" type='tel' value={mobilenumber} placeholder='Mobile Number' onChange={(event) => {
                                 setmobilenumber(event.target.value)
                             }}></input>
                             <input required value={firstname} placeholder='First Name' onChange={(event) => {
@@ -362,16 +307,16 @@ function Login() {
                     </form> : null
                 }
 
-                {
+                {/* {
                     loginstate ? <form onSubmit={loginClick}>
                         <div className='regfrom'>
-                            <input required type='tel' minlength='10' value={mobilenumber} placeholder='Mobile Number' onChange={(event) => {
+                            <input required type='tel' minLength='10' value={mobilenumber} placeholder='Mobile Number' onChange={(event) => {
                                 setmobilenumber(event.target.value)
                             }}></input>
                             <button type="submit"  > Submit</button>
                         </div>
                     </form> : null
-                }
+                } */}
             </div>
             {
                 showpopup ? <div className='c-popupbg'>
@@ -407,18 +352,18 @@ function Login() {
                     </div></div> : null
             }
             <div className='socialmediaIcon'>
-                    <ul>
-                        <li>
-                            <Link href="https://www.instagram.com/ujustbeuniverse/" target='_blank'><img src='/instagram.png' /></Link>
-                        </li>
-                        <li>
+                <ul>
+                    <li>
+                        <Link href="https://www.instagram.com/ujustbeuniverse/" target='_blank'><img src='/instagram.png' /></Link>
+                    </li>
+                    <li>
                         <Link href="https://www.youtube.com/@UJustbeUniverse" target='_blank'><img src='/youtube.png' /></Link>
-                        </li>
-                        <li>
+                    </li>
+                    <li>
                         <Link href="https://www.facebook.com/UJustBeUniverse1" target='_blank'><img src='/facebook.png' /></Link>
-                        </li>
-                    </ul>
-                </div>
+                    </li>
+                </ul>
+            </div>
         </section >
     )
 }
