@@ -283,7 +283,8 @@ export default function Scan({ params }) {
                             onError={handleErrorWebCam}
                             onScan={handleScanWebCam}
                                 constraints={{
-                                facingMode: 'environment'
+                                audio: false,
+          video: { facingMode: { exact: "environment" } },
                             }}
                         />
                         <h2>Scan here</h2>
