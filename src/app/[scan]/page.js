@@ -194,103 +194,100 @@ export default function Scan({ params }) {
                     <img src='/universary.svg' />
                 </div>
                 {
-                    present ? <>
-                        <div className='welcomemessage'>
-                            {/* <h5>
-                                Something Plus Business
-                            </h5>
-                            <h6>Welcome to Exploration Journey {alldata.firstname} {alldata.lastname}</h6> */}
-                            <img src='/Tagline.png' />
-                        </div>
-                        <div className='programsequence'>
-                            <h2>Trajectory</h2>
-                            <ul>
-                                {/* <li>
-                                    <h6>Ganesh Vandana</h6>
-                                    <p>Prarthana by Ashwin Joshi</p>
-                                </li> */}
-                                <li>
-                                    <h6>Registration of Guest</h6>
-                                    <p>4:30 PM Onwards</p>
-                                </li>
-                                <li>
-                                    <h6>Fingure Print Activity</h6>
-                                    <p>4:30 PM Onwards</p>
-                                </li>
-                                <li>
-                                    <h6>Welcome Note</h6>
-                                    <p>5:15 PM to 5:25 PM</p>
-                                </li>
+                    present ? <div className='QrcodeContainer'>
 
-                                <li>
-                                    <h6>Games</h6>
-                                    <p>5:30 PM to 6:30 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Games Recognition</h6>
-                                    <p>6:30 PM to 6:50 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Break + Snacks</h6>
-                                    <p>7:00 PM to 7:20 PM</p>
-                                </li>
-                                <li>
-                                    <h6>UJustBe Poem by Pramodini Marne</h6>
-                                    <p>7:30 PM to 7:35 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Opening Speach</h6>
-                                    <p>7:35 PM to 7:45 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Musafir Hoon Yaaro</h6>
-                                    <p>7:55 PM to 8:00 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Creator's Speech</h6>
-                                    <p>8:05 PM to 8:25 PM</p>
-                                </li>
-                                <li>
-                                    <h6>UJustBe as of today</h6>
-                                    <p>8:25 PM to 8:30 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Awards + Guest Speech </h6>
-                                    <p>8:35 PM to 8:55 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Nucleus Team Performance </h6>
-                                    <p>8:55 PM to 9:00 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Nucleus Team Closing Speech </h6>
-                                    <p>9:10 PM to 9:15 PM</p>
-                                </li>
-                                <li>
-                                    <h6>Dinner </h6>
-                                    <p>9:15 PM onwards</p>
-                                </li>
-
-                            </ul>
+                    <QrReader
+                        delay={300}
+                        style={{ width: '100%' }}
+                        onError={handleErrorWebCam}
+                        onScan={handleScanWebCam}
+                    />
+                    <h2>Scan here</h2>
 
 
-                        </div>
-                    </> : <div className='QrcodeContainer'>
+                </div> : 
+                    <>
+                    <div className='welcomemessage'>
+                        {/* <h5>
+                            Something Plus Business
+                        </h5>
+                        <h6>Welcome to Exploration Journey {alldata.firstname} {alldata.lastname}</h6> */}
+                        <img src='/Tagline.png' />
+                    </div>
+                    <div className='programsequence'>
+                        <h2>Trajectory</h2>
+                        <ul>
+                            {/* <li>
+                                <h6>Ganesh Vandana</h6>
+                                <p>Prarthana by Ashwin Joshi</p>
+                            </li> */}
+                            <li>
+                                <h6>Registration of Guest</h6>
+                                <p>4:30 PM Onwards</p>
+                            </li>
+                            <li>
+                                <h6>Fingure Print Activity</h6>
+                                <p>4:30 PM Onwards</p>
+                            </li>
+                            <li>
+                                <h6>Welcome Note</h6>
+                                <p>5:15 PM to 5:25 PM</p>
+                            </li>
 
-                        <QrReader
-                            delay={300}
-                            style={{ width: '100%' }}
-                            onError={handleErrorWebCam}
-                            onScan={handleScanWebCam}
-                                constraints={{
-                                audio: false,
-          video: { facingMode: { exact: "environment" } },
-                            }}
-                        />
-                        <h2>Scan here</h2>
+                            <li>
+                                <h6>Games</h6>
+                                <p>5:30 PM to 6:30 PM</p>
+                            </li>
+                            <li>
+                                <h6>Games Recognition</h6>
+                                <p>6:30 PM to 6:50 PM</p>
+                            </li>
+                            <li>
+                                <h6>Break + Snacks</h6>
+                                <p>7:00 PM to 7:20 PM</p>
+                            </li>
+                            <li>
+                                <h6>UJustBe Poem by Pramodini Marne</h6>
+                                <p>7:30 PM to 7:35 PM</p>
+                            </li>
+                            <li>
+                                <h6>Opening Speach</h6>
+                                <p>7:35 PM to 7:45 PM</p>
+                            </li>
+                            <li>
+                                <h6>Musafir Hoon Yaaro</h6>
+                                <p>7:55 PM to 8:00 PM</p>
+                            </li>
+                            <li>
+                                <h6>Creator's Speech</h6>
+                                <p>8:05 PM to 8:25 PM</p>
+                            </li>
+                            <li>
+                                <h6>UJustBe as of today</h6>
+                                <p>8:25 PM to 8:30 PM</p>
+                            </li>
+                            <li>
+                                <h6>Awards + Guest Speech </h6>
+                                <p>8:35 PM to 8:55 PM</p>
+                            </li>
+                            <li>
+                                <h6>Nucleus Team Performance </h6>
+                                <p>8:55 PM to 9:00 PM</p>
+                            </li>
+                            <li>
+                                <h6>Nucleus Team Closing Speech </h6>
+                                <p>9:10 PM to 9:15 PM</p>
+                            </li>
+                            <li>
+                                <h6>Dinner </h6>
+                                <p>9:15 PM onwards</p>
+                            </li>
+
+                        </ul>
 
 
                     </div>
+                </> 
                 }
                 {
                     present ? null
