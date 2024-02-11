@@ -454,6 +454,7 @@ input {
   align-items: center;
   padding: 50px 20px;
   background-attachment: fixed;
+  padding-bottom:70px;
 }
 
 .QrcodeContainer {
