@@ -80,10 +80,10 @@ export default function Scan({ params }) {
                 if (response && response.data) {
                     console.log(response, "scan done");
                     console.log(response.data);
-                    if(response.data.status === "Allready scan QR"){
+                    if (response.data.status === "Allready scan QR") {
                         console.log("scanning done");
                         // setPesent(true);
-                        loginClick (localstoragedata.number);
+                        loginClick(localstoragedata.number);
                     }
 
                 }
@@ -165,19 +165,19 @@ export default function Scan({ params }) {
         console.log("use effect");
         const saved = localStorage.getItem("unniversary");
         const localstoragedata = JSON.parse(saved)
-        if(saved){
-            if(localstoragedata.scanQr !== null ){
+        if (saved) {
+            if (localstoragedata.scanQr !== null) {
                 console.log("already scann QR");
                 setPesent(true);
             }
         }
-        else{
+        else {
             router.push("/")
         }
-        
+
     }, [])
 
-    
+
 
     return (
 
@@ -210,62 +210,67 @@ export default function Scan({ params }) {
                                     <p>Prarthana by Ashwin Joshi</p>
                                 </li> */}
                                 <li>
+                                    <h6>Registration of Guest</h6>
+                                    <p>4:30 PM Onwards</p>
+                                </li>
+                                <li>
+                                    <h6>Fingure Print Activity</h6>
+                                    <p>4:30 PM Onwards</p>
+                                </li>
+                                <li>
                                     <h6>Welcome Note</h6>
-                                    <p>Abhishek and Gaurav</p>
+                                    <p>5:15 PM to 5:25 PM</p>
                                 </li>
-                                <li>
-                                    <h6>Playfulness</h6>
-                                    <p>Journey Video</p>
-                                </li>
-                                <li>
-                                    <h6>Warm Up Game</h6>
-                                    <p>Poem by Sonali Korde </p>
-                                </li>
+
                                 <li>
                                     <h6>Games</h6>
-                                    <p>Song by Rajendra Bhide</p>
+                                    <p>5:30 PM to 6:30 PM</p>
                                 </li>
                                 <li>
                                     <h6>Games Recognition</h6>
-                                    <p>Song by Rajendra Bhide</p>
+                                    <p>6:30 PM to 6:50 PM</p>
                                 </li>
                                 <li>
                                     <h6>Break + Snacks</h6>
-                                    <p>Song by Satish Thampi</p>
+                                    <p>7:00 PM to 7:20 PM</p>
                                 </li>
                                 <li>
                                     <h6>UJustBe Poem by Pramodini Marne</h6>
-                                    <p>Most Exploring Orbiter</p>
+                                    <p>7:30 PM to 7:35 PM</p>
+                                </li>
+                                <li>
+                                    <h6>Opening Speach</h6>
+                                    <p>7:35 PM to 7:45 PM</p>
                                 </li>
                                 <li>
                                     <h6>Musafir Hoon Yaaro</h6>
-                                    <p>Song by Kishore Hegde</p>
+                                    <p>7:55 PM to 8:00 PM</p>
                                 </li>
                                 <li>
                                     <h6>Creator's Speech</h6>
-                                    <p>Song by Sudhakar Patole</p>
+                                    <p>8:05 PM to 8:25 PM</p>
                                 </li>
                                 <li>
                                     <h6>UJustBe as of today</h6>
-                                    <p>Dance by Minal Govalkar</p>
+                                    <p>8:25 PM to 8:30 PM</p>
                                 </li>
                                 <li>
                                     <h6>Awards + Guest Speech </h6>
-                                    <p>Most Responsible Cosmonaut</p>
+                                    <p>8:35 PM to 8:55 PM</p>
                                 </li>
                                 <li>
                                     <h6>Nucleus Team Performance </h6>
-                                    <p>Game activity by Smita Kadu</p>
+                                    <p>8:55 PM to 9:00 PM</p>
                                 </li>
                                 <li>
                                     <h6>Nucleus Team Closing Speech </h6>
-                                    <p>Poem by Kanchan Utekar</p>
+                                    <p>9:10 PM to 9:15 PM</p>
                                 </li>
                                 <li>
                                     <h6>Dinner </h6>
-                                    <p>Magic Show by Deepak Pande</p>
+                                    <p>9:15 PM onwards</p>
                                 </li>
-                                
+
                             </ul>
 
 
@@ -319,10 +324,10 @@ export default function Scan({ params }) {
                             <Link href="https://www.instagram.com/ujustbeuniverse/" target='_blank'><img src='/instagram.png' /></Link>
                         </li>
                         <li>
-                        <Link href="https://www.youtube.com/@UJustbeUniverse" target='_blank'><img src='/youtube.png' /></Link>
+                            <Link href="https://www.youtube.com/@UJustbeUniverse" target='_blank'><img src='/youtube.png' /></Link>
                         </li>
                         <li>
-                        <Link href="https://www.facebook.com/UJustBeUniverse1" target='_blank'><img src='/facebook.png' /></Link>
+                            <Link href="https://www.facebook.com/UJustBeUniverse1" target='_blank'><img src='/facebook.png' /></Link>
                         </li>
                     </ul>
                 </div>
